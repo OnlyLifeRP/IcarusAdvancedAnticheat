@@ -34,7 +34,7 @@ export class DeferralsModule extends Module {
 	 * @returns Returns true if the string is alphanumeric, false otherwise.
 	 */
 	private isAlphaNumeric(str: string): boolean {
-		return /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/g.test(str);
+		return /^[a-zA-Z0-9!@#\$%\^\&*\)\ \(+=._-]+$/g.test(str);
 	}
 
 	/**
