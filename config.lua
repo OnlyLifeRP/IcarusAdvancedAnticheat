@@ -12,6 +12,7 @@ Config.DiscordWebhook = ""
 
 -- Implement your custom banning function here.
 function Config.BanPlayer (source, reason)
+    exports['Onlylife']:OnlyBanPlayer(source, reason)
     -- TriggerEvent("EasyAdmin:banPlayer", source, "You have been banned for cheating", 1044463300) -- EasyAdmin for the sake of simplicity.
 end
 
@@ -36,7 +37,7 @@ Config.Modules = {
         },
         -- Filters non alphanumeric playernames.
         NameFilter = {
-            enabled = false,
+            enabled = true,
             rejectionMsg = "Your name contains non alphanumeric characters (a-Z, 0-9). Please consider changing your name in order to connect."
         },
         -- Prevents players that have been Steam VAC banned from connecting.
@@ -102,7 +103,7 @@ Config.Modules = {
     },
     -- Detects if a player has a non whitelisted playermodel (eg. monkey).
     PedBlacklistModule = {
-        enabled = true,
+        enabled = false,
         -- List of all allowed player models. You may add some.
         playerModels = {
             "player_one",
@@ -118,10 +119,10 @@ Config.Modules = {
     },
     -- Detects if the shooter is somewhat looking at his target.
     AimbotModule = {
-        enabled = false,
+        enabled = true,
         -- Increment this if Aimbot false positives occur.
         -- In case you use any 'drug effects' or 'drunk' resources increase this to at least 6.0.
-        offsetDist = 4.5
+        offsetDist = 7.0
     },
     -- Detects if a cheater gives weapons to others.
     GiveWeaponModule = {
@@ -172,12 +173,12 @@ Config.Modules = {
         -- The maximum interval in which a player can shoot projectiles.
         projectileCooldown = 50, --ms
         -- Whether players should be banned from firing missiles or turrets from vehicles.
-        blockVehicleWeapons = true
+        blockVehicleWeapons = false
     },
     -- Detects NoClip esque player movement.
     -- Beware that this might cause false positives with other client scripts that modify ped movement.
     NoClipModule = {
-        enabled = false,
+        enabled = true,
         -- Miscellaneous player speed limit.
         -- Don't touch this unless you know what you are doing.
         speedThreshold = 20.0,
@@ -206,33 +207,25 @@ Config.BlacklistedWeapons = {
     "WEAPON_BZGAS",
     "WEAPON_RAILGUN",
     "WEAPON_MINIGUN",
-    "WEAPON_GRENADE",
-    "WEAPON_MOLOTOV",
-    "WEAPON_MINISMG",
     "WEAPON_SMG_MK2",
     "WEAPON_MINISMG",
     "WEAPON_PIPEBOMB",
     "WEAPON_PROXMINE",
-    "WEAPON_MICROSMG",
     "WEAPON_FIREWORK",
     "WEAPON_HAZARDCAN",
     "WEAPON_RAYPISTOL",
     "WEAPON_RAILGUNXM3",
     "WEAPON_GARBAGEBAG",
     "WEAPON_RAYMINIGUN",
-    "WEAPON_STICKYBOMB",
     "WEAPON_RAYCARBINE",
     "WEAPON_AUTOSHOTGUN",
     "WEAPON_EMPLAUNCHER",
     "WEAPON_COMBATMG_MK2",
-    "WEAPON_MACHINEPISTOL",
     "WEAPON_HOMINGLAUNCHER",
-    "WEAPON_MARKSMANPISTOL",
     "WEAPON_MARKSMANPISTOL",
     "WEAPON_ASSAULTSHOTGUN",
     "WEAPON_GRENADELAUNCHER",
     "WEAPON_COMPACTLAUNCHER",
-    "WEAPON_GRENADELAUNCHER_SMOKE",
 }
 
 -- Events that will get a player instantly banned when triggered.
@@ -294,32 +287,32 @@ Config.BlacklistedEvents = {
         "esx_garbagejob:pay",
         "esx_garbageDFWMjob:pay",
     },
-    ["esx_ambulancejob"] = {
-        "esx_ambulancejob:revive",
-        "esx_ambulancejob:setDeathStatus",
-        "esx_ambulancejob:getDeathStatus",
-        "esx_ambulancejob:storeNearbyVehicle",
-    },
-    ["esx_billing"] = {
-        "esx_billing:sendBill",
-    },
+    --["esx_ambulancejob"] = {
+    --    "esx_ambulancejob:revive",
+    --    "esx_ambulancejob:setDeathStatus",
+    --    "esx_ambulancejob:getDeathStatus",
+    --    "esx_ambulancejob:storeNearbyVehicle",
+    --},
+    --["esx_billing"] = {
+    --    "esx_billing:sendBill",
+    --},
     ["esx_carthief"] = {
         "esx_carthief:alertcops",
         "esx_carthief:pay",
     },
-    ["esx_dmvschool"] = {
-        "esx_dmvschool:addLicense",
-        "esx_dmvschool:pay",
-        "esx_dmvschool:pDFWMay",
-        "esx_dmvschool:addLiceDFWMnse",
-        "dmv:succeDFWMss",
-        "dmv:success",
-    },
+    --["esx_dmvschool"] = {
+    --    "esx_dmvschool:addLicense",
+    --    "esx_dmvschool:pay",
+    --    "esx_dmvschool:pDFWMay",
+    --    "esx_dmvschool:addLiceDFWMnse",
+    --    "dmv:succeDFWMss",
+    --    "dmv:success",
+    --},
     ["esx_policejob"] = {
         "esx_policejob:handcuff",
         "esx_policejob:haDFWMndcuff",
         "esx_policejob:requestarrest",
-        "esx_policejob:drag",
+        --"esx_policejob:drag",
         "esx_policejob:putInVehicle",
         "esx_policejob:message",
         "esx_policejob:requestarrest",
@@ -341,10 +334,6 @@ Config.BlacklistedEvents = {
         "mellotrainer:adminTempBan",
         "mellotrainer:adminKick",
         "mellotrainer:s_adminKill",
-    },
-    ["LegacyFuel"] = {
-        "LegacyFuel:PayFuel",
-        "LegacyFuel:PayFuDFWMel",
     },
     ["DFWM"] = {
         "DFWM:adminmenuenable",
@@ -459,9 +448,9 @@ Config.IllegalModels = {
     "phantom2",
     "minitank",
     "thruster",
-    "slamvan4",
-    "slamvan5",
-    "slamvan6",
+    --"slamvan4",
+    --"slamvan5",
+    --"slamvan6",
     "faction3",
     "bruiser2",
     "bruiser3",
@@ -482,7 +471,7 @@ Config.IllegalModels = {
     "oppressor",
     "boxville5",
     "halftrack",
-    "insurgent",
+    --"insurgent",
     "imperator",
     "technical",
     "bombushka",
