@@ -2,7 +2,7 @@ import { Command } from "../core/Command";
 
 export class WipeEntitiesCommand extends Command {
 	constructor() {
-		super("wipe", "Removes all networked entities", []);
+		super("entity_wipe", "Removes all networked entities", []);
 	}
 
 	/**

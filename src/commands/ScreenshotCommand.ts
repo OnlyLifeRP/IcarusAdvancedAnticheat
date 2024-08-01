@@ -11,7 +11,7 @@ export class ScreenshotCommand extends Command {
 	private readonly _config: Config;
 
 	constructor() {
-		super("screenshot", "Takes a screenshot of the players game", [{ name: "id", help: "The id of the player" }]);
+		super("ica_screenshot", "Takes a screenshot of the players game", [{ name: "id", help: "The id of the player" }]);
 		this._config = container.resolve(Config);
 	}
 
