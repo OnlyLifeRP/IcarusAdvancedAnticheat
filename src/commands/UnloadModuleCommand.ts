@@ -8,7 +8,7 @@ export class UnloadModuleCommand extends Command {
 	private readonly _moduleLoader: ModuleLoader;
 
 	constructor() {
-		super("unload", "Manually unloads a module", [{ name: "moduleName", help: "The name of the module to unload" }]);
+		super("icaunload", "Manually unloads a module", [{ name: "moduleName", help: "The name of the module to unload" }]);
 		this._moduleLoader = container.resolve(ModuleLoader);
 	}
 

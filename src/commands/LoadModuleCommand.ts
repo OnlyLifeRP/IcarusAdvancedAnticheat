@@ -7,7 +7,7 @@ export class LoadModuleCommand extends Command {
 	private readonly _moduleLoader: ModuleLoader;
 
 	constructor() {
-		super("load", "Manually loads a module", [{ name: "moduleName", help: "The name of the module to load" }]);
+		super("icaload", "Manually loads a module", [{ name: "moduleName", help: "The name of the module to load" }]);
 		this._moduleLoader = container.resolve(ModuleLoader);
 	}
 
