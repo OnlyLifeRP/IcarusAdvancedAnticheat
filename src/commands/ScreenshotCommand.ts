@@ -14,7 +14,7 @@ export class ScreenshotCommand extends Command {
 		super("icascreenshot", "Takes a screenshot of the players game", [{ name: "id", help: "The id of the player" }]);
 		this._config = container.resolve(Config);
 	}
-
+	
 	/**
 	 * Executes the screenshot command.
 	 * @param _ The source of the command.
